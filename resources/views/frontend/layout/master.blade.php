@@ -469,7 +469,7 @@
                 <div class="col-md-6">
                     <div class="map_container">
                         <div class="map">
-                            <div id="googleMap" style="width:100%;height:100%;"></div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3551888157094!2d106.8818398749903!3d-6.216803193771156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a76939ce9%3A0x1dd69348f251fa2a!2sSMK%20Negeri%2046%20Jakarta!5e0!3m2!1sid!2sid!4v1704775569646!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

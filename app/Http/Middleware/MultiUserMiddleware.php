@@ -22,6 +22,6 @@ class MultiUserMiddleware
             return $next($request);
         }
 
-        return abort(403, 'Unauthorized.');
+        return abort(403, 'apa coba.');
     }
 }
