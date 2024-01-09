@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.layout.master');
 });
+
+Route::prefix('dashboard')->group(function() {
+    Route::get('/', function() {
+        return view('admin.layout.master');
+    })->name('dashboard')->middleware(['auth', 'role:admin,client']);
+});
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login/login', [LoginController::class, 'login'])->name('login.login');
+Route::post('login/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('register', [RegisterController::class, 'index'])->name('register');
+Route::post('register/register', [RegisterController::class, 'register'])->name('register.register');
