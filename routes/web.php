@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(function() {
     Route::get('/', function() {
-        return view('admin.layout.master');
+        return view('admin.layout.index');
     })->name('dashboard')->middleware(['auth']);
 
     Route::resource('user', UserController::class);

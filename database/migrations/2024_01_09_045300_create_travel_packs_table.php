@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('duration');
             $table->string('type');
             $table->integer('price');
-            $table->timestamps(); 
-            $table->softDeletes(); 
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
