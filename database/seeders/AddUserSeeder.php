@@ -15,10 +15,10 @@ class AddUserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin',
-        'username' => 'Admin',
-        'role' => 'admin',
-        'email' => 'admin@gmail.com',
-        'password' => bcrypt('password'),
+            'username' => 'Admin',
+            'role' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password'),
         ]);
     }
 }

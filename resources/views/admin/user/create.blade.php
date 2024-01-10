@@ -11,69 +11,53 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-        <div class="row">
-
-            <!-- Left side columns -->
-            <div class="col-lg-8">
-                <div class="row">
 
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Add User</h5>
 
+                            @include('error.error')
+
                             <!-- Floating Labels Form -->
-                            <form class="row g-3" method="POST">
+                            <form class="row g-3" method="POST" action="{{ route('user.store') }}">
                                 @csrf
                                 <div class="col-md-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                                        <input value="{{ old('name') }}" name="name" type="text" class="form-control" id="name"
                                             placeholder="Your Name">
-                                        <label for="floatingName">Your Name</label>
+                                        <label for="name">Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input value="{{ old('username') }}" name="username" type="text" class="form-control" id="username"
+                                            placeholder="Your Name">
+                                        <label for="username">Username</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="floatingEmail"
+                                        <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="floatingEmail"
                                             placeholder="Your Email">
-                                        <label for="floatingEmail">Your Email</label>
+                                        <label for="floatingEmail">Email</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" id="floatingPassword"
+                                        <input name="password" type="password" class="form-control" id="floatingPassword"
                                             placeholder="Password">
                                         <label for="floatingPassword">Password</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                                        <label for="floatingTextarea">Address</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingCity" placeholder="City">
-                                            <label for="floatingCity">City</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelect" aria-label="State">
-                                            <option selected>New York</option>
-                                            <option value="1">Oregon</option>
-                                            <option value="2">DC</option>
+                                        <select name="role" class="form-select" id="floatingSelect" aria-label="State">
+                                            <option selected disabled>Select a Role</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="staff">Staff</option>
+                                            <option value="client">Client</option>
                                         </select>
                                         <label for="floatingSelect">Role</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingZip" placeholder="Zip">
-                                        <label for="floatingZip">Zip</label>
                                     </div>
                                 </div>
                                 <div class="text-center">
@@ -86,8 +70,6 @@
 
 
 
-                </div>
-            </div><!-- End Left side columns -->
-        </div>
-    </section>
+                
+            
 @endsection

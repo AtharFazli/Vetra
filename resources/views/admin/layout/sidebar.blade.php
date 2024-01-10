@@ -13,13 +13,18 @@
         <li class="nav-item ">
             <a class="nav-link  {{ request()->routeis('user.create') ? 'active' : 'collapsed' }}" data-bs-target="#users-nav" data-bs-toggle="collapse"
                 href="{{ url('#') }}">
-                <i class="bi bi-menu-button-wide"></i><span>Users</span><i
+                <i class="ri-admin-fill"></i><span>Users</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="users-nav" class="nav-content {{ request()->routeis('user') ? '' : 'collapsed' }}" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('user.create') }}">
                         <i class="bi bi-circle"></i><span>Add User</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.index') }}">
+                        <i class="bi bi-circle"></i><span>List User</span>
                     </a>
                 </li>
             </ul>
