@@ -57,9 +57,16 @@
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 @auth
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('dashboard') }}"> Dashboard</a>
-                                    </li>
+                                @if (auth()->user()->role == 'client')
+                                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard') }}"> client</a>
+                                </li>
+                                @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard') }}"> Dashboard</a>
+                                </li>
+                                @endif
                                     @else
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}"> Login</a>
