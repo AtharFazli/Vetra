@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -12,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'asc')->get();
+        $users = User::where('id', '!=', auth()->user()->id)->orderBy('id', 'asc')->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -45,38 +46,60 @@ class UserController extends Controller
             'role'      => $request->role,
         ]);
 
-        return to_route('user.index');
+        toast('Berhasil', 'success');
+        return to_route('user.index')->with('success');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('admin.user.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name'      => ['required'],
+            'username'  => ['required'],
+            'email'     => ['required', 'email:dns', 'unique:'.User::class],
+            'password'  => ['required', 'min:8'],
+            'role'      => ['required'],
+        ]);
+
+        $user->update([
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'password'  => bcrypt($request->password),
+            'role'      => $request->role,
+        ]);
+
+        toast('Berhasil', 'success');
+        return to_route('user.index')->with('success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        toast('Berhasil', 'success');
+
+        return to_route('user.index')->with('success');
     }
 }
