@@ -2,12 +2,12 @@
 
 @section('index')
     <div class="pagetitle">
-        <h1><I>List User</I></h1>
+        <h1>List Travel Pack</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item">User</li>
-                <li class="breadcrumb-item active">List User</li>
+                <li class="breadcrumb-item">Travel Packages</li>
+                <li class="breadcrumb-item active">List Travel Pack</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,21 +20,25 @@
                 <thead>
                     <tr>
                         <td>No</td>
-                        <td>Name</td>
-                        <td>Username</td>
-                        <td>Email</td>
-                        <td>Role</td>
+                        <td>Title</td>
+                        <td>Slug</td>
+                        <td>Location</td>
+                        <td>About</td>
+                        <td>Departure_date</td>
+                        <td>Duration</td>
                         <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($travels as $travel)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $travel->title }}</td>
+                            <td>{{ $travel->slug }}</td>
+                            <td>{{ $travel->location }}</td>
+                            <td>{{ $travel->about }}</td>
+                            <td>{{ $travel->departure_date }}</td>
+                            <td>{{ $travel->duration }}</td>
                             <td>
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i
@@ -43,14 +47,14 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Action</h6>
                                         </li>
-                                        <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                                        <form action="{{ route('travel.destroy', $travel->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <li><button class="dropdown-item" type="submit">Hapus</button></li>
-                                            <li><a class="dropdown-item" href="{{ route('user.edit', $user->id) }}">Edit</a>
+                                            <li><a class="dropdown-item" href="{{ route('travel.edit', $travel->id) }}">Edit</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                    href="{{ route('user.show', $user->id) }}">Detail</a></li>
+                                                    href="{{ route('travel.show', $travel->id) }}">Detail</a></li>
                                         </form>
                                     </ul>
                                 </div>

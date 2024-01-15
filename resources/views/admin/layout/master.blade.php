@@ -48,7 +48,7 @@
 
     @include('admin.layout.sidebar')
 
-    <main id="main" class="main">
+    <main id="main" class="main" style="height: 100vh">
 
         @yield('index')
 

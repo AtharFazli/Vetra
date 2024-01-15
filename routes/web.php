@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TravelPackController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(func
     })->name('dashboard');
 
     Route::resource('user', UserController::class);
+    Route::resource('travel', TravelPackController::class);
+    Route::resource('gallery', GalleryController::class);
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
