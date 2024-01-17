@@ -1,5 +1,9 @@
 @extends('admin.layout.master')
 
+@section('title')
+    Add Travel Pack
+@endsection
+
 @section('index')
     <div class="pagetitle">
         <h1>List Travel Pack</h1>
@@ -16,7 +20,7 @@
         <div class="card-body">
             <h5 class="card-title">List User</h5>
 
-            <table class="table">
+            <table class="table" id="table">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -68,3 +72,13 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('#table').DataTable({
+                dom : "Bfltp"
+            });
+        })
+    </script>
+@endpush

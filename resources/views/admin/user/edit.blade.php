@@ -1,4 +1,9 @@
 @extends('admin.layout.master')
+
+@section('title')
+    Edit User
+@endsection
+
 @section('index')
     <div class="pagetitle">
         <h1>Edit User</h1>
@@ -36,18 +41,11 @@
                                         <label for="username">Username</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-floating">
                                         <input value="{{ $user->email }}" name="email" type="email" class="form-control" id="floatingEmail"
                                             placeholder="Your Email">
                                         <label for="floatingEmail">Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input name="password" type="password" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

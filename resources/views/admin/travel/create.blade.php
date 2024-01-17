@@ -1,4 +1,9 @@
 @extends('admin.layout.master')
+
+@section('title')
+    Add Travel Pack
+@endsection
+
 @section('index')
     <div class="pagetitle">
         <h1>Add Travel Pack</h1>
@@ -19,7 +24,7 @@
             @include('error.error')
 
             <!-- Floating Labels Form -->
-            <form class="row g-3" method="POST" action="{{ route('travel.store') }}">
+            <form class="row g-3" method="POST" action="{{ route('travel.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6">
                     <div class="form-floating">
@@ -86,7 +91,8 @@
                 <div class="col-md-12">
                     <div class="form-floating"></div>
                     <label for="exampleDataList" class="form-label">Datalist example</label>
-                    <input name="type" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type...">
+                    <input name="type" class="form-control" list="datalistOptions" id="exampleDataList"
+                        placeholder="Type...">
                     <datalist id="datalistOptions">
                         <option value="Economy">
                         <option value="Business">
@@ -101,6 +107,10 @@
                             id="price" placeholder="Price">
                         <label for="price">Price</label>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" name="image" id="formFile">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

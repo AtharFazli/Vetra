@@ -52,7 +52,7 @@
             </ul>
             <ul id="packages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('gallery.store') }}">
+                    <a href="{{ route('gallery.create') }}">
                         <i class="bi bi-circle"></i><span>Add Gallery</span>
                     </a>
                 </li>

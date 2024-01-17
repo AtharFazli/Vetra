@@ -1,5 +1,9 @@
 @extends('admin.layout.master')
 
+@section('title')
+    List User
+@endsection
+
 @section('index')
     <div class="pagetitle">
         <h1><I>List User</I></h1>
@@ -16,7 +20,7 @@
         <div class="card-body">
             <h5 class="card-title">List User</h5>
 
-            <table class="table">
+            <table id="table" class="table">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -64,3 +68,14 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('#table').DataTable({
+                dom : "Bfltp"
+            });
+        })
+    </script>
+@endpush

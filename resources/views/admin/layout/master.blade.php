@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>
+        Dashboard - @yield('title')
+    </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -30,6 +32,10 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('/admin/assets/css/style.css') }}" rel="stylesheet">
+
+    <link
+        href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.css"
+        rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -71,6 +77,16 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/admin/assets/js/main.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.js">
+    </script>
+
+    @stack('scripts')
 
 </body>
 

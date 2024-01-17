@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use App\Models\TravelPack;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class TravelPackController extends Controller
             'price'             => ['required'],
         ]);
 
-        TravelPack::create([
+        $travel = TravelPack::create([
             'title'             => $request->title,
             'slug'              => $request->slug,
             'location'          => $request->location,
@@ -57,6 +58,11 @@ class TravelPackController extends Controller
             'price'             => $request->price,
         ]);
 
+        Gallery::create([
+            'travel_packages_id'    => $travel->id,
+            'image'                 => $travel->image
+        ]);
+
         toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');
     }
@@ -64,17 +70,17 @@ class TravelPackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TravelPack $travel)
     {
-        return view('admin.travel.show');
+        return view('admin.travel.show', compact('travel'));
     }
     
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TravelPack $travel)
     {
-        return view('admin.travel.edit');
+        return view('admin.travel.edit', compact('travel'));
     }
 
     /**

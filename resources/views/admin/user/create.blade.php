@@ -1,4 +1,9 @@
 @extends('admin.layout.master')
+
+@section('title')
+    Add User
+@endsection
+
 @section('index')
     <div class="pagetitle">
         <h1>Add User</h1>
