@@ -46,7 +46,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body style="height: 100vh">
 
     @include('sweetalert::alert')
 
@@ -54,7 +54,7 @@
 
     @include('admin.layout.sidebar')
 
-    <main id="main" class="main" style="height: 100vh">
+    <main id="main" class="main">
 
         @yield('index')
 

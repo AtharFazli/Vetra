@@ -42,25 +42,9 @@
                         <i class="bi bi-circle"></i><span>Add Packages</span>
                     </a>
                 </li>
-            </ul>
-            <ul id="packages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('travel.index') }}">
                         <i class="bi bi-circle"></i><span>List Packages</span>
-                    </a>
-                </li>
-            </ul>
-            <ul id="packages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ route('gallery.create') }}">
-                        <i class="bi bi-circle"></i><span>Add Gallery</span>
-                    </a>
-                </li>
-            </ul>
-            <ul id="packages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ route('gallery.index') }}">
-                        <i class="bi bi-circle"></i><span>List Gallery</span>
                     </a>
                 </li>
             </ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use App\Models\TravelPack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class TravelPackController extends Controller
 {
@@ -16,7 +17,7 @@ class TravelPackController extends Controller
         $travels = TravelPack::orderBy('id', 'asc')->get();
         return view('admin.travel.index', compact('travels'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -24,7 +25,7 @@ class TravelPackController extends Controller
     {
         return view('admin.travel.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -42,6 +43,7 @@ class TravelPackController extends Controller
             'duration'          => ['required'],
             'type'              => ['required'],
             'price'             => ['required'],
+            'image'             => ['required', 'max:2048'],
         ]);
 
         $travel = TravelPack::create([
@@ -58,35 +60,44 @@ class TravelPackController extends Controller
             'price'             => $request->price,
         ]);
 
-        Gallery::create([
-            'travel_packages_id'    => $travel->id,
-            'image'                 => $travel->image
-        ]);
+        foreach ($request->file('image') as $image) {
+            $namaFile = $image->getClientOriginalName();
+            $image->move(public_path('gallery'), $namaFile);
+
+            Gallery::create([
+                'travel_pack_id'    => $travel->id,
+                'image'              => 'gallery/' . $namaFile
+            ]);
+        }
+
+
 
         toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');
     }
-    
+
     /**
      * Display the specified resource.
      */
     public function show(TravelPack $travel)
     {
+        $travel->load('gallery');
         return view('admin.travel.show', compact('travel'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(TravelPack $travel)
     {
+        $travel->load('gallery');
         return view('admin.travel.edit', compact('travel'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TravelPack $travel)
+    public function update(Request $request, TravelPack $travel, Gallery $gallery)
     {
         $request->validate([
             'title'             => ['required'],
@@ -115,6 +126,24 @@ class TravelPackController extends Controller
             'type'              => $request->type,
             'price'             => $request->price,
         ]);
+
+        $travel->load('gallery');
+        if ($request->file('image')) {
+            if ($travel->gallery) {
+                foreach ($travel->gallery as $item) {
+                    File::delete($item->image);
+                }
+            }
+            foreach ($request->file('image') as $image) {
+                $namaFile = $image->getClientOriginalName();
+                $image->move(public_path('gallery'), $namaFile);
+
+                $gallery->update([
+                    'travel_pack_id'    => $travel->id,
+                    'image'             => 'gallery/' . $namaFile
+                ]);
+            }
+        }
 
         toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');

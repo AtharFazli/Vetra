@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" name="about" placeholder="About" id="floatingTextarea" style="height: 100px;"></textarea>
+                        <textarea class="form-control" name="about" placeholder="About" id="floatingTextarea" style="height: 100px;">{{ old('about') }}</textarea>
                         <label for="floatingTextarea">About</label>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                 <div class="col-md-12">
                     <div class="form-floating"></div>
                     <label for="exampleDataList" class="form-label">Datalist example</label>
-                    <input name="type" class="form-control" list="datalistOptions" id="exampleDataList"
+                    <input name="type" class="form-control" list="datalistOptions" value="{{ old('type') }}" id="exampleDataList"
                         placeholder="Type...">
                     <datalist id="datalistOptions">
                         <option value="Economy">
@@ -109,8 +109,8 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" type="file" name="image" id="formFile">
+                    <label for="formFile" class="form-label">Input gallery</label>
+                    <input class="form-control" type="file" name="image[]" multiple id="formFile">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -120,3 +120,24 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#departure_date').on('change', function() {
+                validateDate();
+            });
+
+            function validateDate() {
+                let inputDate = $('#departure_date').val();
+                let today = new Date().toISOString().split('T')[0];
+
+                if (inputDate < today) {
+                    alert("Pilih tanggal yang setelah hari ini.");
+                    $('#departure_date').val(today);
+                }
+            }
+        });
+    </script>
+@endpush

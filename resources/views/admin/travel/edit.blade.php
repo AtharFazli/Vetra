@@ -106,6 +106,23 @@
                         <label for="price">Price</label>
                     </div>
                 </div>
+                <div class="mb-3">
+                        <h6 class="mb-1">Gallery</h6>
+                        @foreach ($travel->gallery as $item)
+                            @if ($item)
+                                <img 
+                                class="mb-3"
+                                style="
+                                    width: 15%;
+                                    aspect-ratio: 2/3;
+                                    object-fit: contain;
+                                "
+                                src="{{ asset($item->image) }}" alt="{{ $item->image }}">
+                            @endif
+                        @endforeach <br>
+                    <label for="formFile" class="form-label">Input gallery</label>
+                    <input class="form-control" type="file" name="image[]" multiple id="formFile">
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="reset" class="btn btn-secondary">Reset</button>

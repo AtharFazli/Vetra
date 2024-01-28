@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.layout.master');
+    return view('frontend.index');
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(function() {

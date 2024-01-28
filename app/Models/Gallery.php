@@ -15,7 +15,7 @@ class Gallery extends Model
     }
 
     protected $fillable = [
-        'travel_packages_id',
+        'travel_pack_id',
         'image'
     ];
 }

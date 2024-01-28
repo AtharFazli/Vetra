@@ -17,7 +17,7 @@ class TravelPack extends Model
 
     public function gallery()
     {
-        return $this->hasOne(Gallery::class);
+        return $this->hasMany(Gallery::class);
     }
 
     protected $fillable = [
