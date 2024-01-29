@@ -21,7 +21,7 @@ class GalleryFactory extends Factory
     {
         return [
             'travel_pack_id' => TravelPack::factory(),
-            'image' => $this->faker->image('public/gallery', 400, 300, null, false),
+            'image' => 'gallery/'. $this->faker->image('public/gallery', 400, 300, null, false),
         ];
     }
 }

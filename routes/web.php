@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $travel = TravelPack::orderBy('id', 'asc')->with('gallery')->limit(5)->get();
-    
-    return view('frontend.index', compact('travel'));
+    $travels = TravelPack::orderBy('id', 'asc')->with('gallery')->limit(5)->get();
+    return $travels;
+    return view('frontend.index', compact('travels'));
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(function() {
