@@ -97,7 +97,7 @@ class TravelPackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TravelPack $travel, Gallery $gallery)
+    public function update(Request $request, TravelPack $travel)
     {
         $request->validate([
             'title'             => ['required'],
@@ -129,18 +129,21 @@ class TravelPackController extends Controller
 
         $travel->load('gallery');
         if ($request->file('image')) {
+
             if ($travel->gallery) {
                 foreach ($travel->gallery as $item) {
                     File::delete($item->image);
+                    $item->delete();
                 }
             }
+
             foreach ($request->file('image') as $image) {
                 $namaFile = $image->getClientOriginalName();
                 $image->move(public_path('gallery'), $namaFile);
 
-                $gallery->update([
+                $travel->gallery()->create([
                     'travel_pack_id'    => $travel->id,
-                    'image'             => 'gallery/' . $namaFile
+                    'image'             => 'gallery/' . $namaFile,
                 ]);
             }
         }

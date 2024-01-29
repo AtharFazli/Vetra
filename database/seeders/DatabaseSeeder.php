@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            AddUserSeeder::class
+            AddUserSeeder::class,
+            TravelPackSeeder::class
         ]);
     }
 }
