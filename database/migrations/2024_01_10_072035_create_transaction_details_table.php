@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->constrained('transactions');
+            $table->foreignId('transaction_id')->constrained('transactions')->cascadeOnDelete();
             $table->string('username');
             $table->string('nationality');
             $table->tinyInteger('is_visa');

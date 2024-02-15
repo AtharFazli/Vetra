@@ -4,19 +4,19 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ url('index.html') }}">
+            <a class="nav-link " href="{{ url('/dashboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item ">
-            <a class="nav-link  {{ request()->routeis('user.create') ? 'active' : 'collapsed' }}" data-bs-target="#users-nav" data-bs-toggle="collapse"
+            <a class="nav-link" data-bs-target="#users-nav" data-bs-toggle="collapse"
                 href="{{ url('#') }}">
                 <i class="ri-admin-fill"></i><span>Users</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="users-nav" class="nav-content {{ request()->routeis('user') ? '' : 'collapsed' }}" data-bs-parent="#sidebar-nav">
+            <ul id="users-nav" class="nav-content" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('user.create') }}">
                         <i class="bi bi-circle"></i><span>Add User</span>
@@ -38,8 +38,13 @@
             </a>
             <ul id="packages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ url('components-alerts.html') }}">
+                    <a href="{{ route('travel.create') }}">
                         <i class="bi bi-circle"></i><span>Add Packages</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('travel.index') }}">
+                        <i class="bi bi-circle"></i><span>List Packages</span>
                     </a>
                 </li>
             </ul>

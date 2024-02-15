@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TravelPackController;
 use App\Http\Controllers\UserController;
+use App\Models\TravelPack;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.layout.master');
+    $travels = TravelPack::orderBy('id', 'asc')->with('gallery')->limit(5)->get();
+    return $travels;
+    return view('frontend.index', compact('travels'));
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(function() {
@@ -27,6 +31,8 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin,staff'])->group(func
     })->name('dashboard');
 
     Route::resource('user', UserController::class);
+    Route::resource('travel', TravelPackController::class);
+    Route::resource('gallery', GalleryController::class);
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login');

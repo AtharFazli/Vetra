@@ -20,10 +20,12 @@ class LoginController extends Controller
             'password' => $request->password
             ])) 
         {
-            if ($request->user()->role == 'client') {
-                return redirect('/');
+            if ($request->user()->role !== 'client') {
+                return to_route('dashboard');
+            } else {
+                return redirect()->to('/');
+
             }
-            return to_route('dashboard');
         } else {
             return to_route('login');
         }

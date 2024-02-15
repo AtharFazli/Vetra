@@ -1,8 +1,12 @@
 @extends('admin.layout.master')
 
+@section('title')
+    Detail User
+@endsection
+
 @section('index')
 <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Detail User</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>

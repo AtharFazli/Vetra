@@ -1,5 +1,5 @@
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+<footer id="footer" class="footer sticky-bottom bg-white mt-5">
     <div class="copyright">
         &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
